@@ -13,6 +13,14 @@ const Mainapp = () => {
       setinputData("");
     }
   };
+  const deleteItem = (id) => {
+    console.log(id);
+    const newitems = items.filter((item, index) => {
+      return index!==id;
+    });
+    setitems(newitems);
+  };
+  
 
   return (
     <>
@@ -30,19 +38,23 @@ const Mainapp = () => {
         </i>
       </div>
 
-      <div>{items.map((item) => {
+      <div>
+        {items.map((item, index) => {
           return (
-            <>
+            <div key={index}>
               <h2>
                 {item}
-                <i className="btn btn-secondary" title="Delete">
+                <i
+                  className="btn btn-secondary"
+                  title="Delete"
+                  onClick={() => deleteItem(index)}
+                >
                   -
                 </i>
               </h2>
-            </>
+            </div>
           );
         })}
-        
       </div>
     </>
   );
